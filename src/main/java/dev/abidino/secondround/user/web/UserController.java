@@ -1,0 +1,37 @@
+package dev.abidino.secondround.user.web;
+
+import dev.abidino.secondround.security.ApiJWTAuthorizationFilter;
+import dev.abidino.secondround.user.business.User;
+import dev.abidino.secondround.user.business.UserService;
+import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+import static dev.abidino.secondround.user.web.UserController.API;
+
+@RestController
+@RequestMapping(API)
+record UserController(UserService userService) {
+    public static final String API = "api/v1/user";
+
+    @GetMapping("/all")
+    List<UserResource> all() {
+        return userService.findAll().stream().map(UserResource::new).toList();
+    }
+
+    @GetMapping("/check")
+    CheckDto check() {
+        return new CheckDto(ApiJWTAuthorizationFilter.getAuthenticatedUserName());
+    }
+
+
+    @PostMapping("/register")
+    UserResource register(@RequestBody @Valid UserDto userDto) {
+        User user = userService.save(new User(userDto));
+        return new UserResource(user);
+    }
+}
+
+record CheckDto(String username) {
+}
