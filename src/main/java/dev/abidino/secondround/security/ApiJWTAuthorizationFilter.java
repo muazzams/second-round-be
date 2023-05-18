@@ -34,7 +34,6 @@ public class ApiJWTAuthorizationFilter extends BasicAuthenticationFilter {
 
         String token = getTokenInCookies(req.getCookies());
         if (!StringUtils.hasLength(token)) {
-            res.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             chain.doFilter(req, res);
             return;
         }
