@@ -21,8 +21,8 @@ record UserController(UserService userService) {
     }
 
     @GetMapping("/check")
-    CheckDto check() {
-        return new CheckDto(ApiJWTAuthorizationFilter.getAuthenticatedUserName());
+    CheckDto check(@CookieValue(value = "token") String username) {
+        return new CheckDto(username);
     }
 
 
