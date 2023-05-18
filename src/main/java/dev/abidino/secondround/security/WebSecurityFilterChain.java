@@ -33,6 +33,11 @@ public class WebSecurityFilterChain {
                             try {
                                 authorize
                                         .requestMatchers(
+                                                "/v3/api-docs",
+                                                "/api/auth/**",
+                                                "/v3/api-docs/**",
+                                                "/swagger-ui/**",
+                                                "/swagger-ui.html",
                                                 "/api/v1/auth/login")
                                         .permitAll()
 //                                        .requestMatchers("/api/v1/user/register").hasRole("ADMIN")
