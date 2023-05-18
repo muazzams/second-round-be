@@ -2,7 +2,8 @@ package dev.abidino.secondround.user.business;
 
 
 import dev.abidino.secondround.user.data.UserEntity;
-import dev.abidino.secondround.user.web.UserDto;
+import dev.abidino.secondround.auth.LoginDto;
+import dev.abidino.secondround.user.web.UserRegisterDto;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 public class User {
@@ -33,10 +34,15 @@ public class User {
 
     }
 
-    public User(UserDto userDto) {
-        this.username = userDto.username();
-        this.password = userDto.password();
-        this.role = userDto.role();
+    public User(LoginDto loginDto) {
+        this.username = loginDto.username();
+        this.password = loginDto.password();
+    }
+
+    public User(UserRegisterDto userRegisterDto) {
+        this.username = userRegisterDto.username();
+        this.password = userRegisterDto.password();
+        this.role = userRegisterDto.role();
     }
 
     public String getUsername() {

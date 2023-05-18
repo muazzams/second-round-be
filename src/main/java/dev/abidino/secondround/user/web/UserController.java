@@ -27,8 +27,8 @@ record UserController(UserService userService) {
 
 
     @PostMapping("/register")
-    UserResource register(@RequestBody @Valid UserDto userDto) {
-        User user = userService.save(new User(userDto));
+    UserResource register(@RequestBody @Valid UserRegisterDto userRegisterDto) {
+        User user = userService.save(new User(userRegisterDto));
         return new UserResource(user);
     }
 }

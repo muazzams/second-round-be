@@ -82,7 +82,14 @@ public class ApiJWTAuthorizationFilter extends BasicAuthenticationFilter {
         if (Objects.nonNull(requestAttributes)) {
             HttpServletRequest request = requestAttributes.getRequest();
             Cookie[] cookies = request.getCookies();
-            return getTokenInCookies(cookies);
+            String token = getTokenInCookies(cookies);
+            if (Objects.nonNull(token)) {
+                String[] values = token.split("&");
+                if (values.length == 2) {
+                    return values[0];
+                }
+            }
+
         }
         throw new UnauthorizedException(ErrorMessageType.UNAUTHORIZED.getMessage());
     }
