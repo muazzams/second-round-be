@@ -42,7 +42,7 @@ public interface JwtTokenUtil {
     static Cookie generateCookie(String key, String value) {
         Cookie cookie = new Cookie(key, value);
         cookie.setMaxAge(24 * 60 * 60);
-        cookie.setSecure(true);
+        cookie.setSecure(false); // cookie prodda secure olmali
         cookie.setHttpOnly(true);
         cookie.setPath("/");
         return cookie;
