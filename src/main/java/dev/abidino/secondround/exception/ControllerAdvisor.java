@@ -40,6 +40,14 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler
+    public ResponseEntity<Object> handleUBulletBoxNotFoundException(
+            BulletBoxNotFoundException ex,
+            WebRequest request) {
+        ErrorDto dto = new ErrorDto(ex.getHttpStatus().value(), ex.getHttpStatus().name(), ex.getMessage(), new Date());
+        return handleExceptionInternal(ex, dto, new HttpHeaders(), ex.getHttpStatus(), request);
+    }
+
+    @ExceptionHandler
     public ResponseEntity<Object> handleBadRequestException(
             BadRequestException ex,
             WebRequest request) {
