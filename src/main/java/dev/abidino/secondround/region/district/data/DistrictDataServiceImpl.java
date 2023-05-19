@@ -13,6 +13,11 @@ public record DistrictDataServiceImpl(DistrictRepository districtRepository) imp
 
     @Override
     public List<DistrictEntity> findAllByCityId(Long cityId) {
-        return districtRepository.findAllByCityEntity_Id(cityId);
+        return districtRepository.findAllByCityEntity_IdOrderByName(cityId);
+    }
+
+    @Override
+    public List<DistrictEntity> findAllByCityPlate(String plate) {
+        return districtRepository.findAllByCityEntity_PlateOrderByName(plate);
     }
 }

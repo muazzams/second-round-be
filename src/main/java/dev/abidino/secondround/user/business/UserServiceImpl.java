@@ -39,7 +39,7 @@ record UserServiceImpl(UserDataService dataService, PasswordEncoder passwordEnco
     public User isMatch(User authenticateUser) {
         User user = findByUsername(authenticateUser.getUsername());
         boolean isMatch = user.matchPassword(passwordEncoder, authenticateUser.getPassword());
-        if (isMatch){
+        if (isMatch) {
             return user;
         }
         throw new BadRequestException(ErrorMessageType.USERNAME_AND_PASSWORD_NOT_MATCH.getMessage());

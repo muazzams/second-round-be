@@ -13,6 +13,6 @@ public record CityDataServiceImpl(CityRepository cityRepository) implements City
 
     @Override
     public List<CityEntity> findAll() {
-        return cityRepository.findAll();
+        return cityRepository.findAllByOrderByName();
     }
 }

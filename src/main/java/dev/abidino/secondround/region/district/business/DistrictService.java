@@ -7,4 +7,6 @@ public interface DistrictService {
     District save(District district);
 
     List<District> findAllByCityId(Long cityId);
+
+    List<District> findAllByCityPlate(String plate);
 }
