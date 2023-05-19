@@ -1,10 +1,7 @@
 package dev.abidino.secondround.region.city.data;
 
 import dev.abidino.secondround.region.city.business.City;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class CityEntity {
@@ -12,6 +9,7 @@ public class CityEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column(unique = true)
     private String plate;
 
     private String name;

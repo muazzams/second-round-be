@@ -26,13 +26,13 @@ public class RegionInitializer {
         this.districtService = districtService;
     }
 
-    @PostConstruct
-    @Transactional
+//    @PostConstruct
+//    @Transactional
     public void initializeData() {
         List<City> all = cityService.findAll();
         if (CollectionUtils.isEmpty(all)) {
             JSONParser jsonParser = new JSONParser();
-            try (FileReader reader = new FileReader("/Users/abidino/Desktop/projects/be/secondRound/src/main/java/dev/abidino/secondround/init/il-ilce.json")) {
+            try (FileReader reader = new FileReader("il-ilce.json")) {
                 Object obj = jsonParser.parse(reader);
                 JSONObject jsonObject = (JSONObject) obj;
                 JSONArray dataList = (JSONArray) jsonObject.get("data");
