@@ -30,7 +30,7 @@ public class User {
         this.id = userEntity.getId();
         this.username = userEntity.getUsername();
         this.password = userEntity.getPassword();
-        this.role = userEntity.getUserType();
+        this.role = userEntity.getRole();
 
     }
 

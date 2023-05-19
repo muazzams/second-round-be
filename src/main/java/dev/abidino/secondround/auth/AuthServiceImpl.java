@@ -1,7 +1,5 @@
 package dev.abidino.secondround.auth;
 
-import dev.abidino.secondround.exception.BadRequestException;
-import dev.abidino.secondround.exception.ErrorMessageType;
 import dev.abidino.secondround.security.JwtTokenUtil;
 import dev.abidino.secondround.user.business.User;
 import dev.abidino.secondround.user.business.UserService;
@@ -13,11 +11,7 @@ public record AuthServiceImpl(UserService userService, PasswordEncoder passwordE
 
     @Override
     public TokenResource getToken(User authenticateUser) {
-        boolean isMatch = userService.isMatch(authenticateUser);
-        if (isMatch) {
-            return JwtTokenUtil.generateToken(authenticateUser);
-        } else {
-            throw new BadRequestException(ErrorMessageType.USERNAME_AND_PASSWORD_NOT_MATCH.getMessage());
-        }
+        User matchedUser = userService.isMatch(authenticateUser);
+        return JwtTokenUtil.generateToken(matchedUser);
     }
 }

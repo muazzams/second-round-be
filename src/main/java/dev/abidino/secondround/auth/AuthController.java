@@ -13,12 +13,18 @@ import static dev.abidino.secondround.auth.AuthController.API;
 @RestController
 @RequestMapping(API)
 @CrossOrigin
-record AuthController(AuthService authService) {
+public class AuthController {
+
+    private final AuthService authService;
 
     public static final String API = "/api/v1/auth";
 
+    public AuthController(AuthService authService) {
+        this.authService = authService;
+    }
+
     @PostMapping(value = "/login")
-    void login(@RequestBody @Valid LoginDto dto, HttpServletResponse response) {
+    public void login(@RequestBody @Valid LoginDto dto, HttpServletResponse response) {
         User user = new User(dto);
         TokenResource token = authService.getToken(user);
         Cookie cookie = JwtTokenUtil.generateCookie(SecurityConstant.TOKEN_COOKIE_NAME, token.token());
@@ -26,7 +32,7 @@ record AuthController(AuthService authService) {
     }
 
     @PostMapping(value = "/logout")
-    void logout(HttpServletResponse response) {
+    public void logout(HttpServletResponse response) {
         Cookie cookie = JwtTokenUtil.generateCookie(SecurityConstant.TOKEN_COOKIE_NAME, null);
         cookie.setMaxAge(0);
         response.addCookie(cookie);

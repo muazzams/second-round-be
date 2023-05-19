@@ -9,5 +9,5 @@ public interface UserService {
 
     List<User> findAll();
 
-    boolean isMatch(User authenticateUser);
+    User isMatch(User authenticateUser);
 }

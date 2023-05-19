@@ -36,8 +36,12 @@ record UserServiceImpl(DataService dataService, PasswordEncoder passwordEncoder)
     }
 
     @Override
-    public boolean isMatch(User authenticateUser) {
+    public User isMatch(User authenticateUser) {
         User user = findByUsername(authenticateUser.getUsername());
-        return user.matchPassword(passwordEncoder, authenticateUser.getPassword());
+        boolean isMatch = user.matchPassword(passwordEncoder, authenticateUser.getPassword());
+        if (isMatch){
+            return user;
+        }
+        throw new BadRequestException(ErrorMessageType.USERNAME_AND_PASSWORD_NOT_MATCH.getMessage());
     }
 }

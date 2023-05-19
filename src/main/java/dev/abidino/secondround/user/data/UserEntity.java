@@ -46,7 +46,7 @@ public class UserEntity {
         return password;
     }
 
-    public Role getUserType() {
+    public Role getRole() {
         return role;
     }
 }

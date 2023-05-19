@@ -19,7 +19,7 @@ public interface JwtTokenUtil {
     String SECRET_KEY_ALGORITHM = "HmacSHA512";
 
     static TokenResource generateToken(User user) {
-        String token = user.getUsername() + "&" + calculateHmac(user.getUsername());
+        String token = user.getUsername() + "&" + user.getRole() + "&" + calculateHmac(user.getUsername());
         LocalDateTime localDateTime = LocalDateTime.now().plusDays(1);
         return new TokenResource(token, localDateTime);
     }
