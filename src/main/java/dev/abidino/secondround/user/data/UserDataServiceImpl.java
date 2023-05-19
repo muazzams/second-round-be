@@ -8,7 +8,7 @@ import java.util.List;
 import static dev.abidino.secondround.exception.ErrorMessageType.USERNAME_NOT_FOUND;
 
 @Service
-public record DataServiceImpl(UserRepository userRepository) implements DataService {
+public record UserDataServiceImpl(UserRepository userRepository) implements UserDataService {
     @Override
     public UserEntity findByUsername(String username) {
         return userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException(USERNAME_NOT_FOUND.getMessage()));

@@ -2,7 +2,7 @@ package dev.abidino.secondround.user.business;
 
 import dev.abidino.secondround.exception.BadRequestException;
 import dev.abidino.secondround.exception.ErrorMessageType;
-import dev.abidino.secondround.user.data.DataService;
+import dev.abidino.secondround.user.data.UserDataService;
 import dev.abidino.secondround.user.data.UserEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -11,7 +11,7 @@ import java.util.List;
 
 @Service
 public
-record UserServiceImpl(DataService dataService, PasswordEncoder passwordEncoder) implements UserService {
+record UserServiceImpl(UserDataService dataService, PasswordEncoder passwordEncoder) implements UserService {
 
     @Override
     public User findByUsername(String username) {

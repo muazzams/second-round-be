@@ -2,7 +2,7 @@ package dev.abidino.secondround.user.data;
 
 import java.util.List;
 
-public interface DataService {
+public interface UserDataService {
     UserEntity findByUsername(String username);
 
     UserEntity save(UserEntity user);
