@@ -11,7 +11,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 
-
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
@@ -19,11 +18,13 @@ public class WebSecurityFilterChain {
 
     @Autowired
     @Lazy
-    public WebSecurityFilterChain(AuthenticationManager authenticationManager) {
+    public WebSecurityFilterChain(AuthenticationManager authenticationManager, CustomAuthenticationEntryPoint customAuthenticationEntryPoint) {
         this.authenticationManager = authenticationManager;
+        this.customAuthenticationEntryPoint = customAuthenticationEntryPoint;
     }
 
     private final AuthenticationManager authenticationManager;
+    private final CustomAuthenticationEntryPoint customAuthenticationEntryPoint;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -46,11 +47,7 @@ public class WebSecurityFilterChain {
                                         .authenticated()
                                         .and()
                                         .exceptionHandling()
-                                        .authenticationEntryPoint((req, rsp, e) -> {
-                                            if (rsp.getStatus() != 403) {
-                                                rsp.sendError(401);
-                                            }
-                                        })
+                                        .authenticationEntryPoint(customAuthenticationEntryPoint)
                                         .and()
                                         .addFilter(new ApiJWTAuthorizationFilter(authenticationManager))
                                         .sessionManagement()

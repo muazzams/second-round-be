@@ -12,6 +12,7 @@ public class CookieService {
 
     @Value("${cookie.secure}")
     private boolean secure;
+
     public Cookie generateCookie(String key, String value) {
         Cookie cookie = new Cookie(key, value);
         cookie.setMaxAge(24 * 60 * 60);

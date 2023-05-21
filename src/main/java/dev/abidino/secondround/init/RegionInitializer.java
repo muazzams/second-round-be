@@ -4,8 +4,6 @@ import dev.abidino.secondround.region.city.business.City;
 import dev.abidino.secondround.region.city.business.CityService;
 import dev.abidino.secondround.region.district.business.District;
 import dev.abidino.secondround.region.district.business.DistrictService;
-import jakarta.annotation.PostConstruct;
-import jakarta.transaction.Transactional;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -26,7 +24,7 @@ public class RegionInitializer {
         this.districtService = districtService;
     }
 
-//    @PostConstruct
+    //    @PostConstruct
 //    @Transactional
     public void initializeData() {
         List<City> all = cityService.findAll();

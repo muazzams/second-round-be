@@ -13,6 +13,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -23,9 +24,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-
+@Service
 public class ApiJWTAuthorizationFilter extends BasicAuthenticationFilter {
-
     public ApiJWTAuthorizationFilter(AuthenticationManager authenticationManager) {
         super(authenticationManager);
     }
@@ -40,10 +40,10 @@ public class ApiJWTAuthorizationFilter extends BasicAuthenticationFilter {
         Cookie[] cookies = req.getCookies();
         String token = getTokenInCookies(cookies);
         if (!StringUtils.hasLength(token)) {
+            SecurityContextHolder.getContext().setAuthentication(authentication);
             chain.doFilter(req, res);
             return;
         }
-
 
         try {
             authentication = getAuthentication(token);
@@ -100,4 +100,5 @@ public class ApiJWTAuthorizationFilter extends BasicAuthenticationFilter {
         }
         throw new UnauthorizedException(ErrorMessageType.UNAUTHORIZED.getMessage());
     }
+
 }
