@@ -1,6 +1,6 @@
 package dev.abidino.secondround.ballotbox.data;
 
-import dev.abidino.secondround.region.city.data.CityEntity;
+import dev.abidino.secondround.ballotbox.business.BulletBox;
 import dev.abidino.secondround.region.district.data.DistrictEntity;
 import dev.abidino.secondround.user.data.UserEntity;
 import jakarta.persistence.*;
@@ -16,11 +16,8 @@ public class BulletBoxEntity {
     private Long rteCount;
     private Long invalidCount;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private DistrictEntity districtEntity;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    private CityEntity cityEntity;
     private String schoolName;
 
     @Column(unique = true)
@@ -32,16 +29,26 @@ public class BulletBoxEntity {
     public BulletBoxEntity() {
     }
 
-    public BulletBoxEntity(Long id, Long kkCount, Long rteCount, Long invalidCount, DistrictEntity districtEntity, CityEntity cityEntity, String schoolName, Long bulletBoxNumber, UserEntity attendant) {
+    public BulletBoxEntity(Long id, Long kkCount, Long rteCount, Long invalidCount, DistrictEntity districtEntity, String schoolName, Long bulletBoxNumber, UserEntity attendant) {
         this.id = id;
         this.kkCount = kkCount;
         this.rteCount = rteCount;
         this.invalidCount = invalidCount;
         this.districtEntity = districtEntity;
-        this.cityEntity = cityEntity;
         this.schoolName = schoolName;
         this.bulletBoxNumber = bulletBoxNumber;
         this.attendant = attendant;
+    }
+
+    public BulletBoxEntity(BulletBox bulletBox) {
+        this.id = bulletBox.getId();
+        this.kkCount = bulletBox.getKkCount();
+        this.rteCount = bulletBox.getRteCount();
+        this.invalidCount = bulletBox.getInvalidCount();
+        this.districtEntity = new DistrictEntity(bulletBox.getDistrict());
+        this.schoolName = bulletBox.getSchoolName();
+        this.bulletBoxNumber = bulletBox.getBulletBoxNumber();
+        this.attendant = new UserEntity(bulletBox.getAttendant());
     }
 
     public Long getId() {
@@ -62,10 +69,6 @@ public class BulletBoxEntity {
 
     public DistrictEntity getDistrictEntity() {
         return districtEntity;
-    }
-
-    public CityEntity getCityEntity() {
-        return cityEntity;
     }
 
     public String getSchoolName() {

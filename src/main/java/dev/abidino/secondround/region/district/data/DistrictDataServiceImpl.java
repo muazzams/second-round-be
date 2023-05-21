@@ -1,5 +1,9 @@
 package dev.abidino.secondround.region.district.data;
 
+import dev.abidino.secondround.exception.BulletBoxNotFoundException;
+import dev.abidino.secondround.exception.DistrictNotFoundException;
+import dev.abidino.secondround.exception.ErrorMessageType;
+import dev.abidino.secondround.region.district.business.District;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,5 +23,10 @@ public record DistrictDataServiceImpl(DistrictRepository districtRepository) imp
     @Override
     public List<DistrictEntity> findAllByCityPlate(String plate) {
         return districtRepository.findAllByCityEntity_PlateOrderByName(plate);
+    }
+
+    @Override
+    public DistrictEntity findById(Long id) {
+        return districtRepository.findById(id).orElseThrow(() -> new DistrictNotFoundException(ErrorMessageType.DISTRICT_NOT_FOUND.getMessage()));
     }
 }

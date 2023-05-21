@@ -8,4 +8,6 @@ public interface DistrictDataService {
     List<DistrictEntity> findAllByCityId(Long cityId);
 
     List<DistrictEntity> findAllByCityPlate(String plate);
+
+    DistrictEntity findById(Long id);
 }

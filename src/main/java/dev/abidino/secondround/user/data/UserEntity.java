@@ -29,6 +29,7 @@ public class UserEntity {
     }
 
     public UserEntity(User user) {
+        this.id = user.getId();
         this.username = user.getUsername();
         this.password = user.getPassword();
         this.role = user.getRole();

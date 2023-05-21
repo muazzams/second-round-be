@@ -9,4 +9,6 @@ public interface DistrictService {
     List<District> findAllByCityId(Long cityId);
 
     List<District> findAllByCityPlate(String plate);
+
+    District findById(Long aLong);
 }

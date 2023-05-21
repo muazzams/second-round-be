@@ -24,4 +24,9 @@ public record DistrictServiceImpl(DistrictDataService districtDataService) imple
     public List<District> findAllByCityPlate(String plate) {
         return districtDataService.findAllByCityPlate(plate).stream().map(District::new).toList();
     }
+
+    @Override
+    public District findById(Long id) {
+        return new District(districtDataService.findById(id));
+    }
 }
