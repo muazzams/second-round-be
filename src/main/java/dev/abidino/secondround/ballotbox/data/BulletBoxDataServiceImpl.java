@@ -21,7 +21,7 @@ public record BulletBoxDataServiceImpl(BulletBoxRepository bulletBoxRepository) 
 
     @Override
     public BulletBoxEntity findByUserEntity(UserEntity entity) {
-        return bulletBoxRepository.findByAttendant(entity).orElseThrow(() -> new BulletBoxNotFoundException(ErrorMessageType.BULLET_BOX_NOT_FOUND.getMessage()));
+        return bulletBoxRepository.findByAttendant(entity).orElseThrow(() -> new BulletBoxNotFoundException(ErrorMessageType.USER_HAS_NOT_BULLET_BOX.getMessage()));
     }
 
     @Override

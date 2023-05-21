@@ -29,6 +29,7 @@ public class UserController {
     }
 
     @GetMapping("/check")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void check(Authentication authentication) {
         System.out.println(authentication.getName());
     }
