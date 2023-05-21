@@ -35,7 +35,8 @@ public class WebSecurityFilterChain {
                                 authorize
                                         .requestMatchers(
                                                 "/v3/api-docs",
-                                                "/api/auth/**",
+                                                "/api/v1/auth/**",
+                                                "/api/v1/cities/**",
                                                 "/v3/api-docs/**",
                                                 "/swagger-ui/**",
                                                 "/swagger-ui.html",
@@ -59,7 +60,10 @@ public class WebSecurityFilterChain {
                                         .deleteCookies(SecurityConstant.TOKEN_COOKIE_NAME)
                                         .and()
                                         .csrf()
+                                        .disable()
+                                        .cors()
                                         .disable();
+
                             } catch (Exception e) {
                                 throw new RuntimeException(e);
                             }

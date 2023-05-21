@@ -2,10 +2,7 @@ package dev.abidino.secondround.region.district.web;
 
 import dev.abidino.secondround.region.district.business.District;
 import dev.abidino.secondround.region.district.business.DistrictService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,12 +19,12 @@ public class DistrictController {
         this.districtService = districtService;
     }
 
-    @GetMapping("/city/{cityId}/districts")
+    @GetMapping("/cities/{cityId}/districts")
     public List<District> findByCityId(@PathVariable Long cityId) {
         return districtService.findAllByCityId(cityId);
     }
 
-    @GetMapping("/city/plate/{plate}/districts")
+    @GetMapping("/cities/plate/{plate}/districts")
     public List<District> findByCityPlate(@PathVariable String plate) {
         return districtService.findAllByCityPlate(plate);
     }

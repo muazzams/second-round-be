@@ -12,7 +12,6 @@ import static dev.abidino.secondround.auth.AuthController.API;
 
 @RestController
 @RequestMapping(API)
-@CrossOrigin(allowCredentials = "true", origins = "http://localhost:5173")
 public class AuthController {
 
     private final AuthService authService;

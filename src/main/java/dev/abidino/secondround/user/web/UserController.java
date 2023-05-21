@@ -13,7 +13,6 @@ import static dev.abidino.secondround.user.web.UserController.API;
 
 @RestController
 @RequestMapping(API)
-@CrossOrigin(allowCredentials = "true", origins = "http://localhost:5173")
 public class UserController {
 
     private final UserService userService;
