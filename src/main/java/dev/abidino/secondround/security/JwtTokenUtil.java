@@ -4,7 +4,6 @@ import dev.abidino.secondround.auth.TokenResource;
 import dev.abidino.secondround.exception.ErrorMessageType;
 import dev.abidino.secondround.exception.GenericException;
 import dev.abidino.secondround.user.business.User;
-import jakarta.servlet.http.Cookie;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
@@ -37,14 +36,5 @@ public interface JwtTokenUtil {
         } catch (NoSuchAlgorithmException | InvalidKeyException e) {
             throw new GenericException(ErrorMessageType.GENERIC_ERROR.getMessage());
         }
-    }
-
-    static Cookie generateCookie(String key, String value) {
-        Cookie cookie = new Cookie(key, value);
-        cookie.setMaxAge(24 * 60 * 60);
-        cookie.setSecure(false); // cookie prodda secure olmali
-        cookie.setHttpOnly(true);
-        cookie.setPath("/");
-        return cookie;
     }
 }

@@ -7,8 +7,9 @@ spring:
     hibernate:
       ddl-auto: update
 
-logging:
-  level:
-    org:
-      springframework:
-        security: DEBUG
+client:
+  domain: http://localhost:5173
+
+cookie:
+  domain: localhost
+  secure: false

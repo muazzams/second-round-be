@@ -1,0 +1,5 @@
+client:
+  domain: http://localhost:5173
+
+cookie:
+  secure: false
