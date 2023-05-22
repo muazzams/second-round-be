@@ -1,15 +1,15 @@
 spring:
   datasource:
-    url: jdbc:postgresql://db.ilzjeojfqkilmilafplk.supabase.co:5432/postgres
-    username: postgres
-    password: 6lXuIvdSS4or02eT
+    url: ${DATABASE_URL}
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
   jpa:
     hibernate:
       ddl-auto: update
 
 client:
-  domain: http://localhost:5173
+  domain: ${CLIENT.DOMAIN}
 
 cookie:
-  domain: localhost
-  secure: false
+  domain: ${COOKIE.DOMAIN}
+  secure: ${COOKIE.SECURE}

@@ -1,5 +1,4 @@
-client:
-  domain: http://localhost:5173
-
-cookie:
-  secure: false
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: none
