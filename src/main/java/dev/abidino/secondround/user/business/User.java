@@ -6,6 +6,8 @@ import dev.abidino.secondround.user.data.UserEntity;
 import dev.abidino.secondround.user.web.UserRegisterDto;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.util.Objects;
+
 public class User {
     private Long id;
 
@@ -71,5 +73,18 @@ public class User {
 
     public Long getId() {
         return id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(id, user.id) && Objects.equals(username, user.username) && Objects.equals(password, user.password) && role == user.role;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, username, password, role);
     }
 }
