@@ -8,8 +8,8 @@ spring:
       ddl-auto: update
 
 client:
-  domain: ${CLIENT.DOMAIN}
+  domain: ${CLIENT_DOMAIN}
 
 cookie:
-  domain: ${COOKIE.DOMAIN}
-  secure: ${COOKIE.SECURE}
+  domain: ${COOKIE_DOMAIN}
+  secure: ${COOKIE_SECURE}
