@@ -6,4 +6,6 @@ public interface CityDataService {
     CityEntity save(CityEntity cityEntity);
 
     List<CityEntity> findAll();
+
+    CityEntity findById(Long cityId);
 }

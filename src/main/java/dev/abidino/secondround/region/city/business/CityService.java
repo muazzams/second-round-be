@@ -6,4 +6,6 @@ public interface CityService {
     City save(City city);
 
     List<City> findAll();
+
+    City findById(Long cityId);
 }

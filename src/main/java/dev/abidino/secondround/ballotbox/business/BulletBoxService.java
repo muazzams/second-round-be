@@ -20,4 +20,6 @@ public interface BulletBoxService {
     BulletBox convertDto(BulletBoxDto bulletBoxDto);
 
     List<BulletBox> getAllVoteCount();
+
+    List<BulletBox> getAllVoteCountByFilter(Long cityId, Long districtId);
 }

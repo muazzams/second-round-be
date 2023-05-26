@@ -1,9 +1,7 @@
 package dev.abidino.secondround.region.district.data;
 
-import dev.abidino.secondround.exception.BulletBoxNotFoundException;
 import dev.abidino.secondround.exception.DistrictNotFoundException;
 import dev.abidino.secondround.exception.ErrorMessageType;
-import dev.abidino.secondround.region.district.business.District;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -30,7 +30,7 @@ public class BulletBox {
         this.attendant = attendant;
     }
 
-    public BulletBox(BulletBox bulletBox, Long id){
+    public BulletBox(BulletBox bulletBox, Long id) {
         this.id = id;
         this.kkCount = bulletBox.getKkCount();
         this.rteCount = bulletBox.getRteCount();
@@ -66,7 +66,7 @@ public class BulletBox {
     public BulletBox() {
     }
 
-    public void setCounts(Long kkCount, Long rteCount, Long invalidCount){
+    public void setCounts(Long kkCount, Long rteCount, Long invalidCount) {
         this.kkCount = kkCount;
         this.rteCount = rteCount;
         this.invalidCount = invalidCount;

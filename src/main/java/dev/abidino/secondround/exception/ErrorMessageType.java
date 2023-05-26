@@ -12,7 +12,8 @@ public enum ErrorMessageType {
     EXPIRE_TOKEN("Oturumunuzun süresi dolmuş, lütfen tekrar giriş yapınız."),
     GENERIC_ERROR("Sistem kaynakli bir sorun olustu. Lutfen daha sonra tekrar deneyiniz."),
     FORBIDDEN("Yetkiniz yoktur."),
-    DISTRICT_NOT_FOUND("Ilce bulunamadi.");
+    DISTRICT_NOT_FOUND("Ilce bulunamadi."),
+    CITY_NOT_FOUND("Il bulunamadi");
 
     ErrorMessageType(String message) {
         this.message = message;

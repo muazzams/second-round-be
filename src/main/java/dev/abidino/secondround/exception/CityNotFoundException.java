@@ -2,9 +2,8 @@ package dev.abidino.secondround.exception;
 
 import org.springframework.http.HttpStatus;
 
-public class DistrictNotFoundException extends AbstractException {
-
-    public DistrictNotFoundException(String message) {
+public class CityNotFoundException extends AbstractException {
+    public CityNotFoundException(String message) {
         super(message);
     }
 

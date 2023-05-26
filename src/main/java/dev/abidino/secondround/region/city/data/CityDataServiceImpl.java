@@ -1,5 +1,7 @@
 package dev.abidino.secondround.region.city.data;
 
+import dev.abidino.secondround.exception.CityNotFoundException;
+import dev.abidino.secondround.exception.ErrorMessageType;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,5 +16,10 @@ public record CityDataServiceImpl(CityRepository cityRepository) implements City
     @Override
     public List<CityEntity> findAll() {
         return cityRepository.findAllByOrderByName();
+    }
+
+    @Override
+    public CityEntity findById(Long cityId) {
+        return cityRepository.findById(cityId).orElseThrow(() -> new CityNotFoundException(ErrorMessageType.CITY_NOT_FOUND.getMessage()));
     }
 }

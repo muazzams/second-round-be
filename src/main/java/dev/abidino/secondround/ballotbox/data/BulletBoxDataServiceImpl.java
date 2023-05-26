@@ -2,6 +2,8 @@ package dev.abidino.secondround.ballotbox.data;
 
 import dev.abidino.secondround.exception.BulletBoxNotFoundException;
 import dev.abidino.secondround.exception.ErrorMessageType;
+import dev.abidino.secondround.region.city.data.CityEntity;
+import dev.abidino.secondround.region.district.data.DistrictEntity;
 import dev.abidino.secondround.user.data.UserEntity;
 import org.springframework.stereotype.Service;
 
@@ -33,5 +35,15 @@ public record BulletBoxDataServiceImpl(BulletBoxRepository bulletBoxRepository) 
     @Override
     public BulletBoxEntity findById(Long id) {
         return bulletBoxRepository.findById(id).orElseThrow(() -> new BulletBoxNotFoundException(ErrorMessageType.BULLET_BOX_NOT_FOUND.getMessage()));
+    }
+
+    @Override
+    public List<BulletBoxEntity> findByCityId(CityEntity cityEntity) {
+        return bulletBoxRepository.findByDistrictEntity_CityEntity(cityEntity);
+    }
+
+    @Override
+    public List<BulletBoxEntity> findByDistrictId(DistrictEntity districtEntity) {
+        return bulletBoxRepository.findByDistrictEntity(districtEntity);
     }
 }

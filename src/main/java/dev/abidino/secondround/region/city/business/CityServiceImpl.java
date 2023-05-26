@@ -19,4 +19,10 @@ public record CityServiceImpl(CityDataService cityDataService) implements CitySe
     public List<City> findAll() {
         return cityDataService.findAll().stream().map(City::new).toList();
     }
+
+    @Override
+    public City findById(Long cityId) {
+        CityEntity cityEntity = cityDataService.findById(cityId);
+        return new City(cityEntity);
+    }
 }

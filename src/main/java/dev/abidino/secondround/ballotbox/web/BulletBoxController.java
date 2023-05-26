@@ -69,4 +69,11 @@ public class BulletBoxController {
         List<BulletBox> bulletBoxList = bulletBoxService.getAllVoteCount();
         return BulletBoxCountDto.generateBulletBoxCountDto(bulletBoxList);
     }
+
+    @GetMapping("/all/filter/")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public BulletBoxCountDto getAllVoteCountByFilters(@RequestParam(required = false) Long cityId, @RequestParam(required = false) Long districtId) {
+        List<BulletBox> bulletBoxList = bulletBoxService.getAllVoteCountByFilter(cityId, districtId);
+        return BulletBoxCountDto.generateBulletBoxCountDto(bulletBoxList);
+    }
 }
