@@ -18,4 +18,6 @@ public interface BulletBoxService {
     BulletBox findById(Long id);
 
     BulletBox convertDto(BulletBoxDto bulletBoxDto);
+
+    List<BulletBox> getAllVoteCount();
 }

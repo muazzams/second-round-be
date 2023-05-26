@@ -85,4 +85,9 @@ public record BulletBoxServiceImpl(BulletBoxDataService bulletBoxDataService,
         BulletBoxEntity bulletBoxEntity = bulletBoxDataService.findByUserEntity(userEntity);
         return new BulletBox(bulletBoxEntity);
     }
+
+    @Override
+    public List<BulletBox> getAllVoteCount() {
+        return bulletBoxDataService.findAll().stream().map(BulletBox::new).toList();
+    }
 }

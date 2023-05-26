@@ -58,9 +58,15 @@ public class BulletBoxController {
     }
 
     @PatchMapping("/{id}")
-    public BulletBoxDto updateCount(@RequestBody BulletBoxUpdateCountDto bulletBoxDto, @PathVariable Long id) {
+    public BulletBoxDto updateCount(@RequestBody BulletBoxCountDto bulletBoxDto, @PathVariable Long id) {
         BulletBox savedBulletBox = bulletBoxService.updateCount(id, bulletBoxDto.kkCount(), bulletBoxDto.rteCount(), bulletBoxDto.invalidCount());
         return new BulletBoxDto(savedBulletBox);
     }
 
+    @GetMapping("/all/count")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public BulletBoxCountDto getAllVoteCount() {
+        List<BulletBox> bulletBoxList = bulletBoxService.getAllVoteCount();
+        return BulletBoxCountDto.generateBulletBoxCountDto(bulletBoxList);
+    }
 }
